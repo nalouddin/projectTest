@@ -12,6 +12,7 @@ class Project(models.Model):
     vote_count = models.IntegerField(default=0)
     vote_ratio = models.IntegerField(default=0)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    tag = models.ManyToManyField('Tag', blank=True)
 
     def __str__(self):
         return self.title
@@ -25,7 +26,7 @@ class Review(models.Model):
     value = models.CharField(max_length=50, choices=VOTE_TYPE)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.value
