@@ -1,0 +1,11 @@
+<h1>loyihalar</h1>
+
+<ul>
+
+    {% for projec in projects %}
+        <li><a href="{% url 'project' projec.id %}">{{ projec.title }}</a></li>
+        <li>{{ projec.created }}</li>
+        <hr>
+    {% endfor %}
+
+</ul>
